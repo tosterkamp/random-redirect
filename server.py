@@ -5,6 +5,8 @@ def application(env, start_response):
     print(env['HTTP_HOST'])
     if(env['HTTP_HOST'].startswith('jitsi')):
         redirect_server = jitsi.get_random()
+    elif(env['HTTP_HOST'].startswith('poll')):
+        redirect_server = poll.get_random()
     elif(env['HTTP_HOST'].startswith('pad')):
         redirect_server = pad.get_random()
     elif(env['HTTP_HOST'].startswith('codimd')):
@@ -40,6 +42,7 @@ class ServerList:
 
 
 jitsi = ServerList('jitsi_servers.lst')
+poll = ServerList('poll_servers.lst')
 pad = ServerList('pad_servers.lst')
 codimd = ServerList('codimd_servers.lst')
 cryptpad = ServerList('cryptpad_servers.lst')
