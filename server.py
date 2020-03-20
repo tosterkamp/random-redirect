@@ -7,6 +7,14 @@ def application(env, start_response):
         redirect_server = jitsi.get_random()
     elif(env['HTTP_HOST'].startswith('pad')):
         redirect_server = pad.get_random()
+    elif(env['HTTP_HOST'].startswith('codimd')):
+        redirect_server = codimd.get_random()
+    elif(env['HTTP_HOST'].startswith('cryptpad')):
+        redirect_server = cryptpad.get_random()
+    elif(env['HTTP_HOST'].startswith('etherpad')):
+        redirect_server = etherpad.get_random()
+    elif(env['HTTP_HOST'].startswith('ethercalc')):
+        redirect_server = ethercalc.get_random()
     else:
         redirect_server = 'https://github.com/tosterkamp/random-redirect/'
     
@@ -33,3 +41,7 @@ class ServerList:
 
 jitsi = ServerList('jitsi_servers.lst')
 pad = ServerList('pad_servers.lst')
+codimd = ServerList('codimd_servers.lst')
+cryptpad = ServerList('cryptpad_servers.lst')
+etherpad = ServerList('etherpad_servers.lst')
+ethercalc = ServerList('ethercalc_servers.lst')
