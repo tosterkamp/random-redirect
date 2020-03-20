@@ -4,15 +4,14 @@ import random
 def application(env, start_response):
     print(env['HTTP_HOST'])
     if(env['HTTP_HOST'].startswith('jitsi')):
-        list = jitsi
+        redirect_server = jitsi.get_random()
     elif(env['HTTP_HOST'].startswith('pad')):
-        list = pad
+        redirect_server = pad.get_random()
     else:
-        start_response('404', [()])
-        return [b"test"]
-    list.renew()
-    start_response('302', [('Location',random.choice(list.servers))])
-    #start_response('302', [('Location',random.choice(urls))])
+        redirect_server = 'https://github.com/tosterkamp/random-redirect/'
+    
+    print('redirect from ' + env['HTTP_HOST'] + ' to ' + redirect_server)
+    start_response('302', [('Location', redirect_server)])
     return [b"redirected"] 
 
 
@@ -22,6 +21,9 @@ class ServerList:
         self.file = 'res/' + filename
         self.servers = []
 
+    def get_random(self):
+        self.renew()
+        return random.choice(self.servers)
 
     def renew(self):
         self.servers.clear()
