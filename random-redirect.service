@@ -1,0 +1,12 @@
+[Unit]
+Description=random-redirect app
+After=network.target
+
+[Service]
+KillSignal=SIGQUIT
+Restart=always
+User=random-redirect
+ExecStart=/bin/zsh -c 'cd /opt/random-redirect && git pull && source venv/bin/activate && uwsgi --ini server_uwsgi.ini'
+
+[Install]
+WantedBy=multi-user.target
