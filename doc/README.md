@@ -32,5 +32,5 @@ create systemd service:
 start systemd service:
 `sudo systemctl start random-redirect.service`
 
-check service outut:
+check service output:
 `sudo journalctl -f -u random-redirect.service`
