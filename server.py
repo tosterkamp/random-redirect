@@ -23,6 +23,8 @@ def application(env, start_response):
         redirect_server = etherpad.get_random()
     elif(env['HTTP_HOST'].startswith('ethercalc')):
         redirect_server = ethercalc.get_random()
+    elif(env['HTTP_HOST'].startswith('bbb')):
+        redirect_server = bbb.get_random()
     else:
         redirect_server = 'https://github.com/tosterkamp/random-redirect/'
     
@@ -96,6 +98,7 @@ codimd = ServerList('codimd_servers.lst', 'screenshot.png')
 cryptpad = ServerList('cryptpad_servers.lst', 'customize/images/AGPL.png')
 etherpad = ServerList('etherpad_servers.lst', 'locales.json')
 ethercalc = ServerList('ethercalc_servers.lst', 'static/img/davy/bg/home2.png')
+bbb = ServerList('bbb_servers.lst', 'html5client/resources/sounds/silence.mp3')
 
 def reload(signum):
     print("start reload")
@@ -106,6 +109,7 @@ def reload(signum):
     global cryptpad
     global etherpad
     global ethercalc
+    global bbb
     jitsi.renew()
     poll.renew()
     pad.renew()
@@ -113,6 +117,7 @@ def reload(signum):
     cryptpad.renew()
     etherpad.renew()
     ethercalc.renew()
+    bbb.renew()
     print("finish reload")
 
 uwsgi.register_signal(99, "", reload)
