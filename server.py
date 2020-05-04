@@ -98,7 +98,7 @@ codimd = ServerList('codimd_servers.lst', 'screenshot.png')
 cryptpad = ServerList('cryptpad_servers.lst', 'customize/images/AGPL.png')
 etherpad = ServerList('etherpad_servers.lst', 'locales.json')
 ethercalc = ServerList('ethercalc_servers.lst', 'static/img/davy/bg/home2.png')
-bbb = ServerList('bbb_servers.lst', 'html5client/resources/sounds/silence.mp3')
+bbb = ServerList('bbb_servers.lst', 'html5client/resources/sounds/LeftCall.mp3')
 
 def reload(signum):
     print("start reload")
