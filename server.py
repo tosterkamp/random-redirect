@@ -89,17 +89,19 @@ class ServerList:
             for i in range(len(online)):
                 props.append(1)
                 tmp_dict = {
-                    "badHoster": server_utils.trustworthyHoster(online[i])
+                    "badHoster": server_utils.hasBadHoster(online[i])
                 }
                 #self.properties[i]["badHoster"] = server_utils.trustworthyHoster(online[i])
                 props[i] = tmp_dict
-            print(props)
+            for i in range(len(online)):
+                print(online[i] + " has badHoster: " + str(props[i]["badHoster"]))
 
             self.servers = online
             self.offline_servers = offline
             self.lock.release()
             #print("online: ")
             #print(self.servers)
+
 
 
 

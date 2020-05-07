@@ -36,16 +36,16 @@ badAsnDesc = [
     "MICROSOFT"
 ]
 
-# the checkStun function is based on:
+# the hasBadHoster function is based on:
 # https://git.jugendhacker.de/j.r/jitsi-list-generator/
 # thanks to:
 # Julian (https://git.jugendhacker.de/j.r)
-def trustworthyHoster(domain):
-  with urllib.request.urlopen("https://tools.keycdn.com/geo.json?host=" + domain[8:-1]) as url:
+def hasBadHoster(domain):
+  with urllib.request.urlopen("https://tools.keycdn.com/geo.json?host=" + domain[8:].split("/", 1)[0]) as url:
     data = json.loads(url.read().decode())
     if data['status'] == "success":
       for asnDesc in badAsnDesc:
         if data['data']['geo']['isp'].casefold().find(asnDesc.casefold()) != -1:
-          return False
-      return True
-    return False
+          return True
+      return False
+    return True
