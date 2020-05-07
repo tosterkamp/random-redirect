@@ -87,7 +87,7 @@ class ServerList:
             self.lock.acquire()
             props = []
             for i in range(len(online)):
-                propes.append(1)
+                props.append(1)
                 tmp_dict = {
                     "badHoster": server_utils.trustworthyHoster(online[i])
                 }
