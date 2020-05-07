@@ -93,7 +93,7 @@ class ServerList:
                 }
                 #self.properties[i]["badHoster"] = server_utils.trustworthyHoster(online[i])
                 props[i] = tmp_dict
-            print(self.props)
+            print(props)
 
             self.servers = online
             self.offline_servers = offline
