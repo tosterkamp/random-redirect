@@ -49,3 +49,16 @@ def hasBadHoster(domain):
           return True
       return False
     return True
+
+# the getCountry function is based on:
+# https://git.jugendhacker.de/j.r/jitsi-list-generator/
+# thanks to:
+# Julian (https://git.jugendhacker.de/j.r)
+def getCountry(domain):
+  with urllib.request.urlopen("https://tools.keycdn.com/geo.json?host=" + domain[8:].split("/", 1)[0]) as url:
+    data = json.loads(url.read().decode())
+    if data['status'] == "success":
+      return data['data']['geo']['country_code']
+    else:
+      return "n.A."
+
