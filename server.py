@@ -5,6 +5,7 @@ import threading
 import time
 import logging
 import uwsgi
+import server_utils
 
 
 
@@ -42,8 +43,9 @@ class ServerList:
         """
         self.lock = threading.Lock()
         self.file = 'res/' + filename
-        self.test_request = t_request;
+        self.test_request = t_request
         self.servers = []
+        self.properties = []
         self.offline_servers = []
         self.renew()
 
@@ -88,6 +90,10 @@ class ServerList:
             self.lock.release()
             #print("online: ")
             #print(self.servers)
+            for i in range(len(self.servers)):
+                self.properties[i]["badHoster"] = trustworthyHoster(self.servers[i])
+            print(self.properties)
+
 
 
 
