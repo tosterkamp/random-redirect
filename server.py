@@ -91,7 +91,11 @@ class ServerList:
             #print("online: ")
             #print(self.servers)
             for i in range(len(self.servers)):
-                self.properties[i]["badHoster"] = server_utils.trustworthyHoster(self.servers[i])
+                tmp_dict = {
+                    "badHoster": server_utils.trustworthyHoster(self.servers[i])
+                }
+                #self.properties[i]["badHoster"] = server_utils.trustworthyHoster(self.servers[i])
+                self.properties[i] = tmp_dict
             print(self.properties)
 
 
