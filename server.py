@@ -111,6 +111,7 @@ class ServerList:
                     offline.append(x)
             #print("offline: ")
             #print(offline)
+            props = []
             for i in range(len(online)):
                 props.append(1)
                 tmp_dict = {
