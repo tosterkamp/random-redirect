@@ -5,34 +5,32 @@ import threading
 import time
 import logging
 import uwsgi
-import server_utils
 
 
 
 def application(env, start_response):
     if(env['HTTP_HOST'].startswith('jitsi')):
-        redirect_server = jitsi.get_random(env['QUERY_STRING'])
+        redirect_server = jitsi.get_random()
     elif(env['HTTP_HOST'].startswith('poll')):
-        redirect_server = poll.get_random(env['QUERY_STRING'])
+        redirect_server = poll.get_random()
     elif(env['HTTP_HOST'].startswith('pad')):
         redirect_server = pad.get_random()
     elif(env['HTTP_HOST'].startswith('codimd')):
-        redirect_server = codimd.get_random(env['QUERY_STRING'])
+        redirect_server = codimd.get_random()
     elif(env['HTTP_HOST'].startswith('cryptpad')):
-        redirect_server = cryptpad.get_random(env['QUERY_STRING'])
+        redirect_server = cryptpad.get_random()
     elif(env['HTTP_HOST'].startswith('etherpad')):
-        redirect_server = etherpad.get_random(env['QUERY_STRING'])
+        redirect_server = etherpad.get_random()
     elif(env['HTTP_HOST'].startswith('ethercalc')):
-        redirect_server = ethercalc.get_random(env['QUERY_STRING'])
+        redirect_server = ethercalc.get_random()
     elif(env['HTTP_HOST'].startswith('bbb')):
         redirect_server = bbb.get_random()
     else:
         redirect_server = 'https://github.com/tosterkamp/random-redirect/'
-    
+
     print('redirect from ' + env['HTTP_HOST'] + ' to ' + redirect_server)
     start_response('302', [('Location', redirect_server)])
-    return [b"redirected"] 
-
+    return [b"redirected"]
 
 
 class ServerList:
@@ -43,44 +41,17 @@ class ServerList:
         """
         self.lock = threading.Lock()
         self.file = 'res/' + filename
-        self.test_request = t_request
+        self.test_request = t_request;
         self.servers = []
-        self.properties = []
         self.offline_servers = []
         self.renew()
 
-    def get_random(self, params=""):
+    def get_random(self):
         """
-        return a random server from self.servers
+        return a random server from self.list
         """
-        allowBadHoster = False
-        allowBadStun = False
-        allowOnlyCountry = []
-        if (params.casefold().find("allowBadHoster".casefold()) != -1):
-            allowBadHoster = True
-        if (params.casefold().find("allowBadStun".casefold()) != -1):
-            allowBadStun = True
-        if (params.casefold().find("country-code".casefold()) != -1):
-            splits = params.casefold().split("&")
-            for item in splits:
-                if (item.find("country-code".casefold()) != -1):
-                    allowOnlyCountry.append(item.split("=",1)[1])
-
-        tmp_list = []
         self.lock.acquire()
-        for i in range(len(self.servers)):
-            if ((not allowBadHoster) and self.properties[i]["badHoster"]):
-                print("badHoster: " + self.servers[i])
-            elif ((not allowBadStun) and self.properties[i]["badStun"]):
-                print("badStun: " + self.servers[i])
-            elif (allowOnlyCountry):
-                for country in allowOnlyCountry:
-                    if (country.casefold() == self.properties[i]["country_code"].casefold()):
-                        tmp_list.append(self.servers[i])
-                        break
-            else:
-                tmp_list.append(self.servers[i])
-        tmp = random.choice(tmp_list)
+        tmp = random.choice(self.servers)
         self.lock.release()
         return tmp
 
@@ -111,18 +82,8 @@ class ServerList:
                     offline.append(x)
             #print("offline: ")
             #print(offline)
-            props = []
-            for i in range(len(online)):
-                props.append(1)
-                tmp_dict = {
-                    "badHoster": server_utils.hasBadHoster(online[i]),
-                    "badStun": server_utils.hasBadStun(online[i]),
-                    "country_code": server_utils.getCountry(online[i])
-                }
-                props[i] = tmp_dict
-
+            self.lock.acquire()
             self.servers = online
-            self.properties = props
             self.offline_servers = offline
             self.lock.release()
             #print("online: ")
@@ -140,7 +101,6 @@ codimd = ServerList('codimd_servers.lst', 'screenshot.png')
 cryptpad = ServerList('cryptpad_servers.lst', 'customize/images/AGPL.png')
 etherpad = ServerList('etherpad_servers.lst', 'locales.json')
 ethercalc = ServerList('ethercalc_servers.lst', 'static/img/davy/bg/home2.png')
-#bbb = ServerList('bbb_servers.lst', 'html5client/resources/sounds/LeftCall.mp3')
 bbb = ServerList('bbb_servers.lst', None)
 
 def reload(signum):
