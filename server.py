@@ -26,7 +26,7 @@ def application(env, start_response):
     elif(env['HTTP_HOST'].startswith('bbb')):
         redirect_server = bbb.get_random()
     else:
-        redirect_server = 'https://github.com/tosterkamp/random-redirect/'
+        redirect_server = 'https://timo-osterkamp.eu/random-redirect.html'
 
     print('redirect from ' + env['HTTP_HOST'] + ' to ' + redirect_server)
     start_response('302', [('Location', redirect_server)])
