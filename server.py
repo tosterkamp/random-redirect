@@ -15,8 +15,8 @@ def application(env, start_response):
         redirect_server = poll.get_random()
     elif(env['HTTP_HOST'].startswith('pad')):
         redirect_server = pad.get_random()
-    elif(env['HTTP_HOST'].startswith('codimd')):
-        redirect_server = codimd.get_random()
+    elif(env['HTTP_HOST'].startswith('hedgedoc')):
+        redirect_server = hedgedoc.get_random()
     elif(env['HTTP_HOST'].startswith('cryptpad')):
         redirect_server = cryptpad.get_random()
     elif(env['HTTP_HOST'].startswith('etherpad')):
@@ -97,7 +97,7 @@ class ServerList:
 jitsi = ServerList('jitsi_servers.lst', 'sounds/outgoingRinging.wav')
 poll = ServerList('poll_servers.lst', 'images/date.png')
 pad = ServerList('pad_servers.lst', None)
-codimd = ServerList('codimd_servers.lst', 'screenshot.png')
+hedgedoc = ServerList('hedgedoc_servers.lst', 'screenshot.png')
 cryptpad = ServerList('cryptpad_servers.lst', 'customize/images/AGPL.png')
 etherpad = ServerList('etherpad_servers.lst', 'locales.json')
 ethercalc = ServerList('ethercalc_servers.lst', 'static/img/davy/bg/home2.png')
@@ -108,7 +108,7 @@ def reload(signum):
     global jitsi
     global poll
     global pad
-    global codimd
+    global hedgedoc
     global cryptpad
     global etherpad
     global ethercalc
@@ -116,7 +116,7 @@ def reload(signum):
     jitsi.renew()
     poll.renew()
     pad.renew()
-    codimd.renew()
+    hedgedoc.renew()
     cryptpad.renew()
     etherpad.renew()
     ethercalc.renew()
