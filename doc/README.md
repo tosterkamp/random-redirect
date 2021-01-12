@@ -1,4 +1,4 @@
-# Docmentation
+# Documentation
 
 ## Installation
 
