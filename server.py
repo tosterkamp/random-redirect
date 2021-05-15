@@ -25,6 +25,8 @@ def application(env, start_response):
         redirect_server = ethercalc.get_random()
     elif(env['HTTP_HOST'].startswith('bbb')):
         redirect_server = bbb.get_random()
+    elif(env['HTTP_HOST'].startswith('nitter')):
+        redirect_server = nitter.get_random()
     else:
         redirect_server = 'https://timo-osterkamp.eu/random-redirect.html'
 
@@ -102,6 +104,7 @@ cryptpad = ServerList('cryptpad_servers.lst', 'customize/images/AGPL.png')
 etherpad = ServerList('etherpad_servers.lst', 'locales.json')
 ethercalc = ServerList('ethercalc_servers.lst', 'static/img/davy/bg/home2.png')
 bbb = ServerList('bbb_servers.lst', None)
+nitter = ServerList('nitter_servers.lst', None)
 
 def reload(signum):
     print("start reload")
@@ -113,6 +116,7 @@ def reload(signum):
     global etherpad
     global ethercalc
     global bbb
+    global nitter
     jitsi.renew()
     poll.renew()
     pad.renew()
@@ -121,6 +125,7 @@ def reload(signum):
     etherpad.renew()
     ethercalc.renew()
     bbb.renew()
+    nitter.renew()
     print("finish reload")
 
 uwsgi.register_signal(99, "", reload)
