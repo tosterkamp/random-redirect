@@ -12,4 +12,4 @@ Page that redirects to a random page that offers the service you are looking for
 | [etherpad.random-redirect.de](https://etherpad.random-redirect.de)    | [etherpad_servers.lst](/res/etherpad_servers.lst)    |
 | [ethercalc.random-redirect.de](https://ethercalc.random-redirect.de)  | [ethercalc_servers.lst](/res/ethercalc_servers.lst)  |
 | [bbb.random-redirect.de](https://bbb.random-redirect.de)              | [bbb_servers.lst](/res/bbb_servers.lst)              |
-| [ffsend.random-redirect.de](https://ffsend.random-redirect.de)        | [ffsend_servers.lst](/res/ffsend_servers.lst)        |
+| [filesend.random-redirect.de](https://filesend.random-redirect.de)        | [filesend_servers.lst](/res/filesend_servers.lst)        |
