@@ -12,3 +12,4 @@ Page that redirects to a random page that offers the service you are looking for
 | [etherpad.random-redirect.de](https://etherpad.random-redirect.de)    | [etherpad_servers.lst](/res/etherpad_servers.lst)    |
 | [ethercalc.random-redirect.de](https://ethercalc.random-redirect.de)  | [ethercalc_servers.lst](/res/ethercalc_servers.lst)  |
 | [bbb.random-redirect.de](https://bbb.random-redirect.de)              | [bbb_servers.lst](/res/bbb_servers.lst)              |
+| [halcyon.random-redirect.de](https://halcyon.random-redirect.de)      | [halcyon_servers.lst](/res/halcyon_servers.lst)      |
