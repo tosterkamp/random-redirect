@@ -13,3 +13,4 @@ Page that redirects to a random page that offers the service you are looking for
 | [ethercalc.random-redirect.de](https://ethercalc.random-redirect.de)  | [ethercalc_servers.lst](/res/ethercalc_servers.lst)  |
 | [bbb.random-redirect.de](https://bbb.random-redirect.de)              | [bbb_servers.lst](/res/bbb_servers.lst)              |
 | [urlshort.random-redirect.de](https://urlshort.random-redirect.de)            | [urlshort_servers.lst](/res/urlshort_servers.lst)            |
+| [paste.random-redirect.de](https://paste.random-redirect.de)| [paste_servers.lst](/res/paste_servers.lst)|
