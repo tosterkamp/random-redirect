@@ -27,6 +27,8 @@ def application(env, start_response):
         redirect_server = bbb.get_random()
     elif(env['HTTP_HOST'].startswith('urlshort')):
         redirect_server = urlshort.get_random()
+    elif(env['HTTP_HOST'].startswith('paste')):
+        redirect_server = paste.get_random()
     else:
         redirect_server = 'https://timo-osterkamp.eu/random-redirect.html'
 
@@ -105,6 +107,7 @@ etherpad = ServerList('etherpad_servers.lst', 'locales.json')
 ethercalc = ServerList('ethercalc_servers.lst', 'static/img/davy/bg/home2.png')
 bbb = ServerList('bbb_servers.lst', None)
 urlshort = ServerList('urlshort_servers.lst', None)
+paste = ServerList('paste_servers.lst', None)
 
 def reload(signum):
     print("start reload")
@@ -117,6 +120,7 @@ def reload(signum):
     global ethercalc
     global bbb
     global urlshort
+    global paste
     jitsi.renew()
     poll.renew()
     pad.renew()
@@ -126,6 +130,7 @@ def reload(signum):
     ethercalc.renew()
     bbb.renew()
     urlshort.renew()
+    paste.renew()
     print("finish reload")
 
 uwsgi.register_signal(99, "", reload)
