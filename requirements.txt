@@ -2,6 +2,6 @@ certifi==2020.4.5.1
 chardet==3.0.4
 idna==2.9
 pkg-resources==0.0.0
-requests==2.23.0
-urllib3==1.26.5
+requests==2.27.1
+urllib3==1.26.9
 uWSGI==2.0.18
