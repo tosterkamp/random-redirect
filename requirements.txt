@@ -4,4 +4,4 @@ idna==2.9
 pkg-resources==0.0.0
 requests==2.27.1
 urllib3==1.26.9
-uWSGI==2.0.18
+uWSGI==2.0.22
