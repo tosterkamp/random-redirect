@@ -3,5 +3,5 @@ chardet==3.0.4
 idna==3.7
 pkg-resources==0.0.0
 requests==2.27.1
-urllib3==1.26.9
+urllib3==1.26.19
 uWSGI==2.0.22
